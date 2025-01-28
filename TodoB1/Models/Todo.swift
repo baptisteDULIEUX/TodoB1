@@ -5,6 +5,9 @@
 //  Created by dulieux baptiste on 28/01/2025.
 //
 
+
+// Importation de la strucutre des données
+
 import Foundation
 
 struct Todo: Identifiable {
