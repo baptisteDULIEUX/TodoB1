@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     
-    var data: [Todo]
+    @EnvironmentObject var todoVM: TodoViewModel
     
     var body: some View {
         // Création de la barre de navigation
@@ -17,9 +17,14 @@ struct ListView: View {
             // Affichage de toutes les tâches todo
             List{
                 // parcours des différentes data de la classe Todo
-                ForEach(data) { todo in
+                ForEach(todoVM.todos) { todo in
                     RowView(todo: todo)
+                        .onTapGesture {
+                            self.todoVM.updateTodo(todo: todo)
+                        }
                 }
+                .onDelete(perform: todoVM.deleteTodo)
+                .onMove(perform:todoVM.moveTodo)
             }
             // modification du background de la liste
             .listStyle(PlainListStyle())
@@ -38,5 +43,6 @@ struct ListView: View {
 }
 
 #Preview {
-    ListView(data: Todo.testData)
+    ListView()
+        .environmentObject(TodoViewModel())
 }

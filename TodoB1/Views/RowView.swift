@@ -22,6 +22,14 @@ struct RowView: View {
             // Titre
             Text(todo.title)
             Spacer()
+            Text(todo.priority.rawValue)
+                .font(.footnote)
+                .padding(3)
+                .foregroundStyle(Color(.systemGray))
+                .frame(width:62)
+                .overlay(
+                    Capsule().stroke(Color(.systemGray), lineWidth: 0.75)
+                )
         }
         .font(.title2)
         .padding(.vertical, 10)
